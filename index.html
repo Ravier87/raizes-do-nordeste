@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raízes do Nordeste</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Barra superior -->
+    <header class="topo">
+        <h1>🌽 Raízes do Nordeste</h1>
+    </header>
+
+    <!--======= Card Da Unidade  ==========-->
+    <section class="unidade-card">
+        <div class="icone-local">📍</div>
+
+    <div class="info-unidade">
+        <span class="titulo-unidade">Unidade selecionada</span>
+         <h3 id="unidade-atual"> Recife</h3>
+         <p>Produtos e ofertas disponíveis nesta unidade.</p>
+    </div>
+
+    <button id="btn-alterar-unidade" type="button"> ▼ </button>
+
+    </section>
+   
+     <!--======= Unidade selecionada ==========-->
+    <div id="seletor-unidade" class="seletor-unidade">
+
+        <h3>Escolha sua unidade</h3>
+
+        <label>
+            <input type="radio" name="unidade" value="Recife">
+            Recife
+        </label>
+
+        <label>
+            <input type="radio" name="unidade" value="Olinda">
+            Olinda
+        </label>
+
+        <label>
+            <input type="radio" name="unidade" value="Fortaleza">
+            Fortaleza
+        </label>
+
+        <button id="confirmar-unidade" type="button">
+            Confirmar
+        </button>
+
+    </div> 
+    
+    <main>
+
+        <!-- Categorias -->
+        <section class="categorias">
+            <h2>Categorias</h2>
+
+           <div class="botoes-categoria">
+    <button class="cat-btn active" data-categoria="Todos">Todos</button>
+    <button class="cat-btn" data-categoria="Cuscuz">🌽 Cuscuz</button>
+    <button class="cat-btn" data-categoria="Tapiocas">🥞 Tapiocas</button>
+    <button class="cat-btn" data-categoria="Bebidas">🥤 Bebidas</button>
+    <button class="cat-btn" data-categoria="Doces">🍰 Doces</button>
+</div>
+
+      <!-- Vitrine de promoções -->
+<section class="vitrine-promocoes">
+    <h2>🔥 Combos do dia</h2>
+
+    <div id="lista-combos" class="lista-promocoes">
+        <!-- Os combos serão inseridos pelo JavaScript -->
+    </div>
+
+    <h2>🏷️ Ofertas especiais</h2>
+
+    <div id="lista-descontos" class="lista-promocoes">
+        <!-- Os produtos com desconto serão inseridos pelo JavaScript -->
+    </div>
+</section>
+
+    </main>
+
+    <!-- Menu inferior -->
+    <footer class="menu-inferior">
+        <a href="index.html">🏠 Início</a>
+        <a href="cardapio.html">📋 Cardápio</a>
+        <a href="carrinho.html">🛒 Carrinho</a>
+        <a href="perfil.html">👤 Perfil</a>
+    </footer>
+
+    <script src="js/dados.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>

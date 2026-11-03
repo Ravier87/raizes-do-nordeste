@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Entrar - Raízes do Nordeste</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="topo">
+        <img src="img/logo.png" alt="Logo Raízes do Nordeste">
+        <h1>🌽 Raízes do Nordeste</h1>
+    </header>
+
+    <main class="pagina-login">
+        <section class="login">
+            <h2>Entrar</h2>
+
+            <p>Faça login para continuar.</p>
+
+            <form id="form-login">
+                <label for="email-login">E-mail</label>
+                <input
+                    type="email"
+                    id="email-login"
+                    name="email"
+                    placeholder="seuemail@exemplo.com"
+                    autocomplete="email"
+                    required
+                >
+
+                <label for="senha-login">Senha</label>
+                <input
+                    type="password"
+                    id="senha-login"
+                    name="senha"
+                    placeholder="Senha"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button type="submit" class="botao">
+                    Entrar
+                </button>
+
+                <p id="mensagem-login" role="status"></p>
+            </form>
+
+            <div class="links-login">
+                <a href="cadastro.html">Criar conta</a>
+                <a href="esqueci-senha.html">Esqueci minha senha</a>
+            </div>
+
+            <p class="aviso-lgpd">
+                Ao continuar, você concorda com nossa
+                <a href="privacidade.html">Política de Privacidade</a>.
+            </p>
+        </section>
+    </main>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

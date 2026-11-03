@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pedido Confirmado</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <header class="topo">
+
+        <h1>✅ Pedido Confirmado</h1>
+
+    </header>
+
+
+    <main class="pagina-pedido-confirmado">
+
+        <section class="pedido-confirmado">
+
+            <div class="icone-confirmacao">
+                ✓
+            </div>
+
+            <h2>Pagamento realizado!</h2>
+
+            <p>
+                Seu pedido foi recebido com sucesso.
+            </p>
+
+            <p>
+                Agora você pode acompanhar o status do seu pedido.
+            </p>
+
+            <section class="resumo-pedido-confirmado">
+    <h2>Resumo do pedido</h2>
+
+    <p>
+        Número do pedido:
+        <strong id="numero-pedido-confirmado">Carregando...</strong>
+    </p>
+
+    <p>
+        Total:
+        <strong id="total-pedido-confirmado">R$ 0,00</strong>
+    </p>
+</section>
+
+
+            <button
+                class="botao-pagamento"
+                id="acompanhar-pedido"
+            >
+                Acompanhar pedido
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <footer class="menu-inferior">
+
+        <a href="index.html">🏠 Início</a>
+
+        <a href="cardapio.html">📋 Cardápio</a>
+
+        <a href="carrinho.html">🛒 Carrinho</a>
+
+        <a href="perfil.html">👤 Perfil</a>
+
+    </footer>
+
+    <script>
+
+    const botaoAcompanhar =
+        document.getElementById("acompanhar-pedido");
+
+    if (botaoAcompanhar) {
+
+        botaoAcompanhar.addEventListener("click", () => {
+
+            window.location.href = "acompanhar-pedido.html";
+
+        });
+
+    }
+
+</script>
+
+
+<script>
+const emailUsuario = (
+    localStorage.getItem("usuarioLogado") || ""
+).trim().toLowerCase();
+
+const numeroPedidoElemento =
+    document.getElementById("numero-pedido-confirmado");
+
+const totalPedidoElemento =
+    document.getElementById("total-pedido-confirmado");
+
+if (!emailUsuario) {
+    numeroPedidoElemento.textContent = "Faça login para consultar";
+    totalPedidoElemento.textContent = "—";
+} else {
+    const chavePedido = `pedidoAtual_${emailUsuario}`;
+
+    const pedido = JSON.parse(
+        localStorage.getItem(chavePedido)
+    );
+
+    if (pedido) {
+        numeroPedidoElemento.textContent = pedido.numero;
+
+        totalPedidoElemento.textContent =
+            Number(pedido.total).toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+
+        // Limpa o carrinho sem apagar o pedido confirmado.
+        localStorage.removeItem("carrinho");
+        localStorage.removeItem("totalPedido");
+    } else {
+        numeroPedidoElemento.textContent = "Pedido não encontrado";
+        totalPedidoElemento.textContent = "—";
+    }
+}
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acompanhar Pedido</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <header class="topo">
+
+        <h1>📦 Acompanhar Pedido</h1>
+
+    </header>
+
+        
+    <main class="pagina-acompanhar-pedido">
+        <section class="status-pedido">
+            <h2>Seu pedido está em andamento!</h2>
+            <p>Confira abaixo o andamento do seu pedido.</p>
+
+            <div class="numero-pedido">
+                <span>Número do pedido</span>
+                <strong id="numero-pedido">Carregando...</strong>
+            </div>
+
+            <p class="total-acompanhamento">
+                Total:
+                <strong id="total-pedido">R$ 0,00</strong>
+            </p>
+
+            <div class="etapas-pedido">
+                <div class="etapa" data-status="Pedido recebido">
+                    <span class="icone-etapa">1</span>
+                    <div>
+                        <h3>Pedido recebido</h3>
+                        <p>Seu pedido foi confirmado.</p>
+                    </div>
+                </div>
+
+                <div class="etapa" data-status="Em preparação">
+                    <span class="icone-etapa">2</span>
+                    <div>
+                        <h3>Em preparação</h3>
+                        <p>A cozinha está preparando seu pedido.</p>
+                    </div>
+                </div>
+
+                <div class="etapa" data-status="Pronto">
+                    <span class="icone-etapa">3</span>
+                    <div>
+                        <h3>Pronto para retirada ou entrega</h3>
+                        <p>Seu pedido está pronto para a próxima etapa.</p>
+                    </div>
+                </div>
+
+                <div class="etapa" data-status="Concluído">
+                    <span class="icone-etapa">4</span>
+                    <div>
+                        <h3>Pedido concluído</h3>
+                        <p>Seu pedido foi finalizado. Obrigado!</p>
+                    </div>
+                </div>
+            </div>
+
+            <button
+    type="button"
+    id="concluir-pedido"
+    class="botao-pagamento"
+>
+    Simular conclusão do pedido
+</button>
+
+<p id="mensagem-conclusao" role="status"></p>
+
+            <button
+                type="button"
+                class="botao-pagamento"
+                onclick="window.location.href='index.html'">
+                Voltar ao início
+            </button>
+        </section>
+    </main>
+
+
+
+
+    <footer class="menu-inferior">
+
+        <a href="index.html">🏠 Início</a>
+
+        <a href="cardapio.html">📋 Cardápio</a>
+
+        <a href="carrinho.html">🛒 Carrinho</a>
+
+        <a href="perfil.html">👤 Perfil</a>
+
+    </footer>
+
+<script>
+/* ===================== CONTA ATIVA ===================== */
+
+const emailUsuario = (
+    localStorage.getItem("usuarioLogado") || ""
+).trim().toLowerCase();
+
+const numeroPedido = document.getElementById("numero-pedido");
+const totalPedido = document.getElementById("total-pedido");
+const botaoConcluir = document.getElementById("concluir-pedido");
+const mensagemConclusao = document.getElementById("mensagem-conclusao");
+
+const etapas = document.querySelectorAll(".etapas-pedido .etapa");
+
+const ordemStatus = [
+    "Pedido recebido",
+    "Em preparação",
+    "Pronto",
+    "Concluído"
+];
+
+// Cada conta terá seus próprios dados.
+const chavePedido = `pedidoAtual_${emailUsuario}`;
+const chavePontos = `pontosFidelidade_${emailUsuario}`;
+const chavePedidosPontuados = `pedidosPontuados_${emailUsuario}`;
+
+let pedido = emailUsuario
+    ? JSON.parse(localStorage.getItem(chavePedido))
+    : null;
+
+/* ===================== ATUALIZAR ETAPAS ===================== */
+
+function atualizarEtapas(status) {
+    const indiceStatus = ordemStatus.indexOf(status);
+    const etapaAtual = indiceStatus === -1 ? 0 : indiceStatus;
+
+    etapas.forEach((etapa, indice) => {
+        etapa.classList.remove("concluida", "atual");
+
+        const icone = etapa.querySelector(".icone-etapa");
+
+        if (indice < etapaAtual) {
+            etapa.classList.add("concluida");
+            icone.textContent = "✓";
+        } else if (indice === etapaAtual) {
+            etapa.classList.add("atual");
+            icone.textContent = indice + 1;
+        } else {
+            icone.textContent = indice + 1;
+        }
+    });
+}
+
+/* ===================== CARREGAR PEDIDO ===================== */
+
+if (!emailUsuario) {
+    numeroPedido.textContent = "Entre na sua conta";
+    totalPedido.textContent = "—";
+    botaoConcluir.disabled = true;
+
+    mensagemConclusao.textContent =
+        "Faça login para consultar seu pedido.";
+
+} else if (pedido) {
+    numeroPedido.textContent = pedido.numero;
+
+    totalPedido.textContent = Number(pedido.total).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+
+    atualizarEtapas(pedido.status);
+
+    if (pedido.status === "Concluído") {
+        botaoConcluir.textContent = "Pedido já concluído";
+        botaoConcluir.disabled = true;
+    }
+
+} else {
+    numeroPedido.textContent = "Pedido não encontrado";
+    totalPedido.textContent = "—";
+    botaoConcluir.disabled = true;
+
+    mensagemConclusao.textContent =
+        "Não há pedido registrado para esta conta.";
+}
+
+/* ===================== CONCLUIR PEDIDO ===================== */
+
+botaoConcluir.addEventListener("click", function () {
+    if (!pedido || !emailUsuario) {
+        return;
+    }
+
+    const pedidosPontuados = JSON.parse(
+        localStorage.getItem(chavePedidosPontuados)
+    ) || [];
+
+    // Evita contabilizar o mesmo pedido mais de uma vez.
+    if (pedidosPontuados.includes(pedido.numero)) {
+        pedido.status = "Concluído";
+
+        localStorage.setItem(chavePedido, JSON.stringify(pedido));
+
+        atualizarEtapas(pedido.status);
+
+        botaoConcluir.textContent = "Pedido já concluído";
+        botaoConcluir.disabled = true;
+
+        mensagemConclusao.textContent =
+            "Este pedido já foi concluído e seus pontos já foram contabilizados.";
+
+        return;
+    }
+
+    // Lê somente o saldo da conta conectada.
+    const pontosAtuais = Number(
+        localStorage.getItem(chavePontos)
+    ) || 0;
+
+    // Cada R$ 1,00 inteiro do pedido vale 1 ponto.
+    const pontosGanhos = Math.floor(Number(pedido.total) || 0);
+
+    const novoSaldo = pontosAtuais + pontosGanhos;
+
+    const metaFidelidade = 200;
+
+    const recompensasAntes = Math.floor(
+        pontosAtuais / metaFidelidade
+    );
+
+    const recompensasDepois = Math.floor(
+        novoSaldo / metaFidelidade
+    );
+
+    // Salva o saldo individual da conta.
+    localStorage.setItem(chavePontos, novoSaldo);
+
+    // Registra este pedido para evitar pontuação duplicada.
+    pedidosPontuados.push(pedido.numero);
+
+    localStorage.setItem(
+        chavePedidosPontuados,
+        JSON.stringify(pedidosPontuados)
+    );
+
+    // Atualiza o status e salva o pedido da conta.
+    pedido.status = "Concluído";
+
+    localStorage.setItem(chavePedido, JSON.stringify(pedido));
+
+    atualizarEtapas(pedido.status);
+
+    botaoConcluir.textContent = "Pedido já concluído";
+    botaoConcluir.disabled = true;
+
+    // Informa se uma nova recompensa foi desbloqueada.
+    if (recompensasDepois > recompensasAntes) {
+        const novasRecompensas =
+            recompensasDepois - recompensasAntes;
+
+        mensagemConclusao.textContent =
+            `Pedido concluído! Você ganhou ${pontosGanhos} pontos. ` +
+            `Parabéns! Você desbloqueou ` +
+            `${novasRecompensas} ` +
+            `${novasRecompensas === 1
+                ? "nova recompensa demonstrativa"
+                : "novas recompensas demonstrativas"}!`;
+    } else {
+        mensagemConclusao.textContent =
+            `Pedido concluído! Você ganhou ${pontosGanhos} pontos de fidelidade.`;
+    }
+});
+</script>
+
+</body>
+
+</html>

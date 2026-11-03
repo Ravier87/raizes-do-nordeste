@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meu Perfil - Raízes do Nordeste</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="topo">
+        <h1>🌽 Raízes do Nordeste</h1>
+    </header>
+
+    <main class="pagina-perfil">
+
+        <section class="perfil-boas-vindas">
+            <div class="perfil-avatar">👤</div>
+            <h2>Meu perfil</h2>
+            <p>Olá, <strong id="perfil-nome">cliente</strong>!</p>
+            <p>Consulte seus dados e acompanhe seus pedidos.</p>
+        </section>
+
+        <!-------------- Dados do cliente ---------------->
+        <section class="perfil-secao">
+            <h2>Meus dados</h2>
+
+            <div class="perfil-dado">
+                <span>Nome completo</span>
+                <strong id="perfil-nome-completo">Carregando...</strong>
+            </div>
+
+            <div class="perfil-dado">
+                <span>E-mail</span>
+                <strong id="perfil-email">Carregando...</strong>
+            </div>
+
+            <div class="perfil-dado">
+                <span>Telefone</span>
+                <strong id="perfil-telefone">Carregando...</strong>
+            </div>
+
+            <p id="perfil-sem-cadastro" class="perfil-mensagem" hidden>
+                Nenhum cadastro demonstrativo encontrado.
+                <a href="cadastro.html">Criar conta</a>
+            </p>
+        </section>
+
+        <!----------- Último pedido -------------->
+        <section class="perfil-secao">
+            <h2>Meu último pedido</h2>
+
+            <div id="perfil-detalhes-pedido" hidden>
+                <div class="perfil-dado">
+                    <span>Número do pedido</span>
+                    <strong id="perfil-numero-pedido"></strong>
+                </div>
+
+                <div class="perfil-dado">
+                    <span>Valor total</span>
+                    <strong id="perfil-total-pedido"></strong>
+                </div>
+
+                <div class="perfil-dado">
+                    <span>Recebimento</span>
+                    <strong id="perfil-recebimento"></strong>
+                </div>
+
+                <div class="perfil-dado">
+                    <span>Forma de pagamento</span>
+                    <strong id="perfil-pagamento"></strong>
+                </div>
+
+                <div class="perfil-dado">
+                    <span>Status</span>
+                    <strong id="perfil-status"></strong>
+                </div>
+
+                <button
+                    type="button"
+                    id="perfil-acompanhar-pedido"
+                    class="perfil-botao"
+                >
+                    Acompanhar pedido
+                </button>
+            </div>
+
+            <p id="perfil-sem-pedido" class="perfil-mensagem" hidden>
+                Você ainda não possui pedidos registrados.
+                <a href="cardapio.html">Conhecer o cardápio</a>
+            </p>
+        </section>
+
+        <!------------- Fidelidade -------------->
+        
+<section class="perfil-secao perfil-fidelidade">
+    <h2>⭐ Programa de Fidelidade</h2>
+
+    <p class="fidelidade-descricao">
+        A cada R$ 1,00 gasto em pedidos concluídos, você ganha
+        1 ponto para se aproximar de novas recompensas.
+    </p>
+
+    <div class="fidelidade-saldo">
+        <span>Seus pontos</span>
+        <strong id="pontos-fidelidade">0 pontos</strong>
+    </div>
+
+    <div class="fidelidade-progresso">
+        <div class="fidelidade-progresso-texto">
+            <span>Próxima recompensa</span>
+            <strong id="texto-progresso">0 / 200 pontos</strong>
+        </div>
+
+        <div
+            class="fidelidade-barra"
+            role="progressbar"
+            aria-label="Progresso para a próxima recompensa"
+            aria-valuemin="0"
+            aria-valuemax="200"
+            aria-valuenow="0"
+            id="barra-progresso"
+        >
+            <div id="preenchimento-progresso"></div>
+        </div>
+
+        <p id="pontos-restantes">
+            Faltam 200 pontos para atingir a meta.
+        </p>
+    </div>
+
+    <div class="fidelidade-recompensa">
+        <span class="fidelidade-icone">🎁</span>
+
+        <div>
+            <h3>Recompensa especial</h3>
+            <p>
+                Alcance 200 pontos para desbloquear sua recompensa
+                demonstrativa.
+            </p>
+        </div>
+    </div>
+
+    <p class="perfil-aviso-demo">
+        Programa demonstrativo. Os pontos são contabilizados
+        a partir dos pedidos concluídos neste protótipo.
+    </p>
+</section>
+
+        <!--------------- Ações ---------------->
+        <section class="perfil-acoes">
+            <a href="cardapio.html" class="perfil-botao">
+                Ver cardápio
+            </a>
+
+            <button
+                type="button"
+                id="perfil-sair"
+                class="perfil-botao perfil-botao-secundario"
+            >
+                Sair da conta
+            </button>
+        </section>
+
+    </main>
+
+    <!---------- Menu inferior ----------->
+    <footer class="menu-inferior">
+        <a href="index.html">🏠 Início</a>
+        <a href="cardapio.html">📋 Cardápio</a>
+        <a href="carrinho.html">🛒 Carrinho</a>
+        <a href="perfil.html" aria-current="page">👤 Perfil</a>
+    </footer>
+
+    <script src="js/perfil.js"></script>
+
+</body>
+</html>

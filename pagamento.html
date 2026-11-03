@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pagamento</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body class="pagina-pagamento">
+
+    <header class="topo">
+
+        <h1>💳 Pagamento</h1>
+
+    </header>
+
+
+    <main>
+
+        <section class="resumo-pagamento">
+
+            <h2>Resumo do Pedido</h2>
+
+            <div class="linha-total">
+
+                <span>Total</span>
+
+                <strong id="total-pagamento">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <section class="forma-pagamento">
+
+            <h2>Forma de pagamento</h2>
+
+
+            <label class="opcao-pagamento">
+
+                <input
+                    type="radio"
+                    name="formaPagamento"
+                    value="pix"
+                    checked
+                >
+
+                <div>
+
+                    <strong>PIX</strong>
+
+                    <p>Pagamento instantâneo.</p>
+
+                </div>
+
+            </label>
+
+
+            <label class="opcao-pagamento">
+
+                <input
+                    type="radio"
+                    name="formaPagamento"
+                    value="cartao"
+                >
+
+                <div>
+
+                    <strong>Cartão</strong>
+
+                    <p>Crédito ou débito.</p>
+
+                </div>
+
+            </label>
+
+        </section>
+
+
+        <section
+            id="dados-cartao"
+            class="dados-cartao"
+        >
+
+            <h2>Dados do cartão</h2>
+
+            <label for="numero-cartao">
+                Número do cartão
+            </label>
+
+            <input
+                type="text"
+                id="numero-cartao"
+                placeholder="0000 0000 0000 0000"
+            >
+
+
+            <label for="nome-cartao">
+                Nome no cartão
+            </label>
+
+            <input
+                type="text"
+                id="nome-cartao"
+                placeholder="Nome completo"
+            >
+
+
+            <label for="validade-cartao">
+                Validade
+            </label>
+
+            <input
+                type="text"
+                id="validade-cartao"
+                placeholder="MM/AA"
+            >
+
+
+            <label for="cvv">
+                CVV
+            </label>
+
+            <input
+                type="text"
+                id="cvv"
+                placeholder="000"
+            >
+
+        </section>
+
+
+        <button
+            id="confirmar-pagamento"
+            class="botao-pagamento"
+        >
+            Confirmar pagamento
+        </button>
+
+    </main>
+
+
+    <footer class="menu-inferior">
+
+        <a href="index.html">🏠 Início</a>
+
+        <a href="cardapio.html">📋 Cardápio</a>
+
+        <a href="carrinho.html">🛒 Carrinho</a>
+
+        <a href="perfil.html">👤 Perfil</a>
+
+    </footer>
+
+     <script src="js/pagamento.js"></script>
+
+
+</body>
+
+</html>

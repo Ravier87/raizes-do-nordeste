@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="topo"> 
+        <h1>🛒 Carrinho</h1>
+    </header>
+
+<!-------- Unidade selecionada ---------->
+    <section class="unidade-card">
+        <div class="icone-local">📍</div>
+
+    <div class="info-unidade">
+        <span class="titulo-unidade">Unidade selecionada</span>
+        <h3>Recife • Boa Viagem</h3>
+    </div>
+
+    <div class="trocar-unidade">▼</div>
+    </section>
+
+<main>
+    <section id="lista-carrinho" class="lista-carrinho">
+    </section>
+
+    <!----------- FORMA DE RECEBIMENTO ------------>
+
+    <section class="tipo-pedido">
+
+        <h2>Como você deseja receber?</h2>
+
+        <label class="opcao-pedido">
+            <input type="radio" name="tipoPedido" value="retirada" checked>
+
+            <div>
+                <strong>Retirar Na Unidade</strong>
+                <p>Retire seu pedido na unidade selecionada.</p>
+            </div>
+        </label>
+
+        <label class="opcao-pedido">
+            <input type="radio" name="tipoPedido" value="entrega">
+
+            <div>
+                <strong>Entrega</strong>
+                <p>Receba seu pedido no endereço informado.</p>
+            </div>
+        </label>
+
+    </section>
+
+    <section id="formulario-endereco" class="formulario-endereco">
+
+    <h2>Endereço de entrega</h2>
+
+    <label for="cep">CEP</label>
+    <input type="text" id="cep" placeholder="00000-000">
+
+    <label for="rua">Rua</label>
+    <input type="text" id="rua" placeholder="Nome Da Rua">
+
+    <label for="numero">Número</label>
+    <input type="text" id="numero" placeholder="Número">
+
+    <label for="complemento">Complemento</label>
+    <input type="text" id="complemento" placeholder="Apartamento, casa, etc.">
+
+    <label for="bairro">Bairro</label>
+    <input type="text" id="bairro" placeholder="Bairro">
+
+    <label for="cidade">Cidade</label>
+    <input type="text" id="cidade" placeholder="Cidade">
+
+</section>
+
+    <section class="resumo-pedido">
+        <h2>Resumo do Pedido</h2>
+
+        <div class="linha-total">
+            <span>Total</span>
+            <strong id="valor-total">R$ 0,00</strong>
+        </div>
+
+        <button class="botao-pagamento" id="ir-pagamento">
+            Ir para Pagamento
+        </button>
+    </section>
+</main>
+
+ <!-- Menu inferior -->
+    <footer class="menu-inferior">
+        <a href="index.html">🏠 Início</a>
+        <a href="cardapio.html">📋 Cardápio</a>
+        <a href="carrinho.html">🛒 Carrinho</a>
+        <a href="perfil.html">👤 Perfil</a>
+    </footer>
+
+  
+    <script src="js/carrinho.js"></script>
+    
+</body>
+</html>
